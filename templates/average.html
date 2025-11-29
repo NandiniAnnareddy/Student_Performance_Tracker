@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Calculate Average</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f8;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+        }
+
+        h2 {
+            font-size: 32px;
+            margin-bottom: 30px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 300px;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            padding: 12px;
+            background-color: #c8f7dc;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #a0e6b7;
+        }
+
+        a {
+            margin-top: 20px;
+            text-decoration: none;
+            color: #444;
+            font-weight: bold;
+        }
+
+        a:hover {
+            color: #1b5e20;
+        }
+
+        .average-info {
+            background-color: #e7f6e7;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 20px;
+            width: 300px;
+        }
+
+        .average-info p {
+            margin: 10px 0;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Calculate Average Grade</h2>
+
+    {% if average is defined %}
+    <div class="average-info">
+        <p><strong>Name:</strong> {{ student[0] }}</p>
+        <p><strong>Roll Number:</strong> {{ roll_no }}</p>
+        <p><strong>Average Grade:</strong> {{ average|round(2) }}</p>
+    </div>
+    {% else %}
+    <form method="post">
+        <input type="text" name="roll_no" placeholder="Enter Roll Number" required>
+        <input type="submit" value="Calculate Average">
+    </form>
+    {% endif %}
+
+    <a href="{{ url_for('index') }}">Back to Home</a>
+</body>
+
+</html>

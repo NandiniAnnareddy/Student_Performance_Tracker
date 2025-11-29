@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Student Performance Tracker</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fdf6f0;
+            /* soft off-white */
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+        }
+
+        header h1 {
+            font-size: 36px;
+            color: #444;
+            margin-bottom: 50px;
+        }
+
+        .menu {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .menu a {
+            text-decoration: none;
+            padding: 15px 50px;
+            background: #ffd6e0;
+            /* soft pastel pink */
+            color: #444;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+        }
+
+        .menu a:nth-child(2) {
+            background: #c8f7dc;
+            /* soft pastel green */
+        }
+
+        .menu a:nth-child(3) {
+            background: #ffe7a3;
+            /* soft pastel yellow */
+        }
+
+        .menu a:nth-child(4) {
+            background: #c4e0ff;
+            /* soft pastel blue */
+        }
+
+        .menu a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+            opacity: 0.9;
+        }
+
+        ul.messages {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 30px;
+            width: 400px;
+        }
+
+        ul.messages li {
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .error {
+            background-color: #fdecea;
+            color: #b71c1c;
+        }
+
+        .success {
+            background-color: #e7f6e7;
+            color: #1b5e20;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Student Performance Tracker</h1>
+    </header>
+
+    <div class="menu">
+        <a href="{{ url_for('add_student') }}">Add Student</a>
+        <a href="{{ url_for('add_grade') }}">Add Grades</a>
+        <a href="{{ url_for('view_student') }}">View Student Details</a>
+        <a href="{{ url_for('average') }}">Calculate Average</a>
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <ul class="messages">
+        {% for category, message in messages %}
+        <li class="{{ 'error' if category == 'error' else 'success' }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+</body>
+
+</html>
