@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from database import create_tables, add_student_to_db, add_grade_to_db, get_student_from_db, get_grades_from_db
-
+import os
 app = Flask(__name__)
 app.secret_key = "your_secret_key"  # Needed for flash messages
 
@@ -78,5 +78,6 @@ def average():
         return render_template('average.html', student=student, roll_no=roll_no, average=avg)
     return render_template('average.html')
 
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+
